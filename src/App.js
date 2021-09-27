@@ -18,7 +18,11 @@ class App extends Component {
 
   componentDidMount() {
 
-    const example_object1 = { title: 'Exemplo de nota', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae interdum nisi. Nunc finibus eget dui nec gravida. Sed tincidunt, massa ac suscipit blandit'}
+    const example_object1 = { 
+      title: 'Exemplo de nota', 
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae interdum nisi. Nunc finibus eget dui nec gravida. Sed tincidunt, massa ac suscipit blandit',
+      time: new Date().toLocaleString('pt-BR', {timeStyle: 'short'})
+    }
 
     this.setState(prevState => ({
       notes: [...prevState.notes, example_object1]
@@ -32,7 +36,7 @@ class App extends Component {
         notes: prevState.notes.filter((item, i) => {
 
           return index !== i;
-          
+
         })
     }));
 
@@ -48,7 +52,8 @@ class App extends Component {
     this.setState(prevState => ({
         notes: [ ...prevState.notes, {
           title: form_title,
-          text: form_text
+          text: form_text,
+          time: new Date().toLocaleString('pt-BR', {timeStyle: 'short'})
         }]
     }));
 
