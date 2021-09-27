@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import Card from './Card';
+import {
+    Card, CardText, CardBody,
+    CardTitle, CardSubtitle
+} from 'reactstrap';
+  
 
 class NoteList extends Component {
 
@@ -9,18 +13,21 @@ class NoteList extends Component {
 
             <section>
 
-                {Array.of('x', 'y', 'z').map((cat, index) => {
+                {this.props.notes.map((each, index) => 
 
-                    return (
-                        <div key={index}>
-                            {cat}
-                            <Card />
+                     <div key={index}>
 
-                        </div>
-                    )
+                        <Card>
+                            <CardBody>
+                              <CardTitle tag="h5">{index + 1}</CardTitle>
+                              <CardSubtitle tag="h6" className="mb-2 text-muted">{each.title}</CardSubtitle>
+                              <CardText>{each.text}</CardText>
+                            </CardBody>
+                        </Card>
 
-                })}
-
+                    </div>
+                    
+                )}
 
             </section>
 
