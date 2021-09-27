@@ -1,5 +1,6 @@
 import "./assets/style/App.css";
 import NoteList from "./components/NoteList";
+import ConfirmModal from "./components/ConfirmModal";
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
@@ -9,9 +10,12 @@ class App extends Component {
     super(props);
 
     this.handlerRemoveNote = this.handlerRemoveNote.bind(this)
+    this.handleToggleModal = this.handleToggleModal.bind(this)
 
     this.state = {
       notes: [],
+      modal: false,
+      modalId: null,
     };
 
   }
@@ -30,6 +34,15 @@ class App extends Component {
 
   }
 
+  handleToggleModal(index) {
+
+    this.setState(prevState => ({
+      modal: !prevState.modal,
+      modalId: index
+    }));
+
+  }
+
   handlerRemoveNote(index) {
 
     this.setState(prevState => ({
@@ -37,7 +50,8 @@ class App extends Component {
 
           return index !== i;
 
-        })
+        }),
+        modal: false
     }));
 
   }
@@ -87,7 +101,10 @@ class App extends Component {
 
         </Form>
 
-        <NoteList notes={this.state.notes} handler={this.handlerRemoveNote} />
+        <NoteList notes={this.state.notes} modal={this.state.modal} handlerRemove={this.handlerRemoveNote} handlerModal={this.handleToggleModal} />
+
+        <ConfirmModal state={this.state} handlerRemove={this.handlerRemoveNote} handlerModal={this.handleToggleModal} />
+
       </Container>
     );
   }
