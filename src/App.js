@@ -8,6 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.handlerRemoveNote = this.handlerRemoveNote.bind(this)
+
     this.state = {
       notes: [],
     };
@@ -15,12 +17,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.notes)
 
     const example_object1 = { title: 'Exemplo de nota', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae interdum nisi. Nunc finibus eget dui nec gravida. Sed tincidunt, massa ac suscipit blandit'}
 
     this.setState(prevState => ({
-      notes: [ ...prevState.notes, example_object1]
+      notes: [...prevState.notes, example_object1]
+    }));
+
+  }
+
+  handlerRemoveNote(index) {
+
+    this.setState(prevState => ({
+        notes: prevState.notes.filter((item, i) => {
+
+          return index !== i;
+          
+        })
     }));
 
   }
@@ -69,7 +82,7 @@ class App extends Component {
 
         </Form>
 
-        <NoteList notes={this.state.notes} />
+        <NoteList notes={this.state.notes} handler={this.handlerRemoveNote} />
       </Container>
     );
   }
