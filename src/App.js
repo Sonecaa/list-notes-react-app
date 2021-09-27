@@ -52,14 +52,14 @@ class App extends Component {
         <FormGroup row className='m-3'>
           <Label for="form_title" sm={2}>Title</Label>
           <Col sm={10}>
-            <Input type="text" name="email" id="form_title" placeholder="Title" />
+            <Input type="text" name="email" id="form_title" placeholder="Title" required />
           </Col>
         </FormGroup>
 
         <FormGroup row className='m-3'>
           <Label for="form_title" sm={2}>Note</Label>
           <Col sm={10}>
-            <Input type="textarea" name="email" id="form_text" placeholder="Write your note" />
+            <Input type="textarea" name="email" id="form_text" placeholder="Write your note" required/>
           </Col>
         </FormGroup>
 
